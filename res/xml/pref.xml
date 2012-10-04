@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="ご主人様の情報">
+		<EditTextPreference
+			android:key="goshujinSamaName"
+			android:title="ご主人様の名前"
+			android:summary="お名前をお聞かせください、ご主人様！"
+			android:dialogTitle="お名前をお聞かせください、ご主人様！" />
+		<EditTextPreference
+			android:key="goshujinSamaAddress"
+			android:title="ご主人様のお住まい"
+			android:summary="お住まいを教えてください、ご主人様！"
+			android:dialogTitle="お住まいを教えてください、ご主人様！" />
+	</PreferenceCategory>
+</PreferenceScreen>
