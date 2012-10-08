@@ -1,8 +1,14 @@
 package info.android.akihabara.cos.sample02;
 
-//日本Androidの会 秋葉原支部 コスプレ理系女子普及部
-//Android アプリ開発　勉強会 教材
-//Programmed by Kazuyuki Eguchi 2012
+/* このファイルは
+ *   日本Androidの会 秋葉原支部 コスプレ理系女子普及部
+ *   Android アプリ開発　勉強会 教材
+ *   Programmed by Kazuyuki Eguchi 2012
+ * を元に作りました。
+ * オリジナルのソースコードは
+ * http://yoriko.mydns.jp/Sample02.zip
+ * にあります。
+ */
 
 import java.io.File;
 import java.io.FileInputStream;
