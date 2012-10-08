@@ -284,24 +284,24 @@ public class DView extends View
 			tCanvas.drawBitmap(mBackBmp, 0, 0, null);
 			tCanvas.drawBitmap(mBmp, 0, 0, null);
 
-		    String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/" + System.currentTimeMillis() + ".jpg";
+		    String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/" + System.currentTimeMillis() + ".png";
 		    
 		    Log.d(TAG,filename);
 		    
 			File file = new File(filename);
 			FileOutputStream out = new FileOutputStream(file);
-			tBmp.compress(CompressFormat.JPEG, 100, out);
+			tBmp.compress(CompressFormat.PNG, 100, out);
 			tBmp.recycle();
 			out.close();
 			
 			// Bluetooth送信をする場合
-			Uri uri = Uri.parse("file://" + filename);
-			Log.d(TAG,uri.toString());
-			
-			Intent intent = new Intent(Intent.ACTION_SEND);
-			intent.setType("image/jpeg");
-			intent.putExtra(Intent.EXTRA_STREAM, uri);
-			getContext().startActivity(intent);
+//			Uri uri = Uri.parse("file://" + filename);
+//			Log.d(TAG,uri.toString());
+//			
+//			Intent intent = new Intent(Intent.ACTION_SEND);
+//			intent.setType("image/png");
+//			intent.putExtra(Intent.EXTRA_STREAM, uri);
+//			getContext().startActivity(intent);
 		}
 		catch(Exception ex)
 		{

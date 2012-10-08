@@ -7,12 +7,14 @@
       android:id="@+id/button_clear"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/button_clear" />
+      android:text="@string/button_clear"
+      android:onClick="clearCanvas" />
   <Button
       android:id="@+id/button_done"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/button_done" />
+      android:text="@string/button_done"
+      android:onClick="saveCanvas" />
 
   <info.android.akihabara.cos.sample02.DView
       android:id="@+id/sign"

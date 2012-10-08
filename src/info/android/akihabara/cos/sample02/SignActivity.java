@@ -23,6 +23,7 @@ import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class SignActivity extends Activity {
@@ -38,16 +39,16 @@ public class SignActivity extends Activity {
   private final Object prefActivity = StampCardPref.class;
 
   // 変数の定義
-  private DView view = null;
+  private DView dview = null;
 
   @Override
   public void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
 
-    Log.d(TAG,"initializing view");
+    Log.d(TAG,"initializing dview");
     this.setContentView(R.layout.main);
-    DView view = (DView) findViewById(R.id.sign);
+    dview = (DView) findViewById(R.id.sign);
   }
 
   @Override
@@ -66,6 +67,16 @@ public class SignActivity extends Activity {
   protected void onResume()
   {
     super.onResume();
+  }
+  
+  public void clearCanvas(View view) {
+  	dview.clear();
+  	Toast.makeText(this, "書き直させていただきます、ご主人様！", Toast.LENGTH_LONG).show();
+  }
+  
+  public void saveCanvas(View view) {
+  	dview.Printout();
+  	Toast.makeText(this, "サインが描けました、ご主人様！", Toast.LENGTH_LONG).show();
   }
 
   @Override
