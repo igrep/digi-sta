@@ -22,9 +22,6 @@ public class SignActivity extends Activity {
   // 定数の定義
   private String TAG = "test";
 
-  private final int RESULT_VOICE = 1;
-  private final int RESULT_CAMERA = 2;
-
   private Uri mImageUri = null;
 
   private final int MENU_ID_PREF = 1;
@@ -41,8 +38,9 @@ public class SignActivity extends Activity {
   {
     super.onCreate(savedInstanceState);
 
-    view = new DView(this);
-    this.setContentView(view);
+    Log.d(TAG,"initializing view");
+    this.setContentView(R.layout.main);
+    DView view = (DView) findViewById(R.id.sign);
   }
 
   @Override

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">でじ☆すた</string>
-
+  <string name="app_name">でじ☆すた</string>
+  <string name="button_clear">描き直させてください ご主人様！</string>
+  <string name="button_done">描けました ご主人様！</string>
 </resources>

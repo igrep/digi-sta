@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -38,9 +39,7 @@ public class DView extends View
 	private Canvas mCanvas = null;
 	private Paint mPaint = null;
 	
-	@SuppressWarnings("unused")
 	private int mWidth = 0;
-	@SuppressWarnings("unused")
 	private int mHeight = 0;
 	
 	private int mColor = Color.BLACK;
@@ -49,17 +48,24 @@ public class DView extends View
 	private float[] mX = new float[10];
 	private float[] mY = new float[10];
 	
-	public DView(Context context)
-	{
+	public DView(Context context) {
 		super(context);
-
+		// 初期化の処理はこちらに書いてね！
+		Log.d(TAG,"DView Create");
+	}
+	public DView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// 初期化の処理はこちらに書いてね！
+		Log.d(TAG,"DView Create");
+	}
+	public DView(Context context, AttributeSet attrs, int i) {
+		super(context, attrs, i);
 		// 初期化の処理はこちらに書いてね！
 		Log.d(TAG,"DView Create");
 	}
 	
 	@Override
-	protected void onDraw(Canvas canvas)
-	{
+	protected void onDraw(Canvas canvas) {
 		// 画面描画をしてください。
 		Log.d(TAG,"onDraw");
 
