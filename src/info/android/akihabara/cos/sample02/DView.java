@@ -36,10 +36,9 @@ import android.widget.Toast;
 
 public class DView extends View 
 {
-	// 定数の定義
-	private String TAG = "test";
 	
 	// 変数の定義
+	private String TAG = "test";
 	private Bitmap mBmp = null;
 	private Bitmap mBackBmp = null;
 	private Canvas mCanvas = null;
@@ -284,11 +283,11 @@ public class DView extends View
 			tCanvas.drawBitmap(mBackBmp, 0, 0, null);
 			tCanvas.drawBitmap(mBmp, 0, 0, null);
 
-		    String filename = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/" + System.currentTimeMillis() + ".png";
+		    String filename =  System.currentTimeMillis() + ".png";
 		    
 		    Log.d(TAG,filename);
 		    
-			File file = new File(filename);
+			File file = DigistaUtils.newSignFile(filename);
 			FileOutputStream out = new FileOutputStream(file);
 			tBmp.compress(CompressFormat.PNG, 100, out);
 			tBmp.recycle();

@@ -28,9 +28,6 @@ import android.widget.Toast;
 
 public class SignActivity extends Activity {
   // 定数の定義
-  private String TAG = "test";
-
-  private Uri mImageUri = null;
 
   private final int MENU_ID_PREF = 1;
   private final int MENU_ID_DONE = 2;
@@ -40,6 +37,8 @@ public class SignActivity extends Activity {
 
   // 変数の定義
   private DView dview = null;
+  private String TAG = "test";
+  private Uri mImageUri = null;
 
   @Override
   public void onCreate(Bundle savedInstanceState)
