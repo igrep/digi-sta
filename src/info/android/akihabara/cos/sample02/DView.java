@@ -287,7 +287,7 @@ public class DView extends View
 		    
 		    Log.d(TAG,filename);
 		    
-			File file = DigistaUtils.newSignFile(filename);
+			File file = StampManager.newSignFile(filename);
 			FileOutputStream out = new FileOutputStream(file);
 			tBmp.compress(CompressFormat.PNG, 100, out);
 			tBmp.recycle();

@@ -4,7 +4,7 @@ import java.io.File;
 
 import android.os.Environment;
 
-public class DigistaUtils {
+public class StampManager {
 	public final static File SIGN_DIR = new File(
 			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
 			File.separator + "digista" );
