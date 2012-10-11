@@ -287,11 +287,7 @@ public class DView extends View
 		    
 		    Log.d(TAG,filename);
 		    
-			File file = StampManager.newSignFile(filename);
-			FileOutputStream out = new FileOutputStream(file);
-			tBmp.compress(CompressFormat.PNG, 100, out);
-			tBmp.recycle();
-			out.close();
+			StampManager.addStamp(tBmp);
 			
 			// Bluetooth送信をする場合
 //			Uri uri = Uri.parse("file://" + filename);
