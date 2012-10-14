@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">でじ☆すた</string>
-  <string name="button_clear">描き直させてください ご主人様！</string>
-  <string name="button_done">描けました ご主人様！</string>
+
+    <string name="app_name">でじ☆すた</string>
+    <string name="button_clear">描き直させてください ご主人様！</string>
+    <string name="button_done">描けました ご主人様！</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_stamp_history">StampHistoryActivity</string>
+
 </resources>
