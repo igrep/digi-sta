@@ -15,10 +15,13 @@ public class StampManager {
 			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
 			File.separator + "digista" );
 	
-	public static void addStamp (Bitmap stampBmp) {
+	public StampManager () {
 		if ( ! SIGN_DIR.exists() ){
 			SIGN_DIR.mkdir();
 		}
+	}
+	
+	public void addStamp (Bitmap stampBmp) {
 		String filename =  System.currentTimeMillis() + ".png";
 
 		File file = new File( SIGN_DIR, filename );
