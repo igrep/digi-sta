@@ -35,5 +35,5 @@ public class StampManager {
 		}
 		stampBmp.recycle();
 	}
-
+	
 }
