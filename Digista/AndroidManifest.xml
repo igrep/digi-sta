@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name=".StampHistoryActivity"
-            android:label="@string/title_activity_stamp_history" >
+            android:label="@string/title_activity_stamp_history"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

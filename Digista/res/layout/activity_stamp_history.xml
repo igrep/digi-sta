@@ -1,14 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <GridView android:id="@+id/stampGrid"
+    <GridView
+        android:id="@+id/stampGrid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/storeName"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         tools:context=".StampHistoryActivity" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/storeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/store_name"
+        android:textSize="50sp" />
+
+</RelativeLayout>
