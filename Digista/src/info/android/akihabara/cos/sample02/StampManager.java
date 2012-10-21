@@ -16,11 +16,27 @@ public class StampManager {
 			File.separator + "digista" );
 	
 	public StampManager () {
-		if ( ! SIGN_DIR.exists() ){
-			SIGN_DIR.mkdir();
-		}
+		this.initialize();
 	}
 	
+	public boolean clearAllStamps () {
+		if ( SIGN_DIR.exists() ){
+			File [] stamps = SIGN_DIR.listFiles();
+			for( int i = 0; i < stamps.length; ++i){
+				stamps[i].delete();
+			}
+		}
+		return SIGN_DIR.delete();
+	}
+	
+	public boolean initialize () {
+		if ( ! SIGN_DIR.exists() ){
+			return SIGN_DIR.mkdir();
+		} else {
+			return false;
+		}
+	}
+
 	public void addStamp (Bitmap stampBmp) {
 		String filename =  System.currentTimeMillis() + ".png";
 
