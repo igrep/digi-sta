@@ -3,13 +3,14 @@ package info.android.akihabara.cos.sample02;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.util.Log;
 
-public class StampManager {
+public class StampManager implements Iterator<Bitmap>	{
 	private static final String TAG = "test";
 	public final static File SIGN_DIR = new File(
 			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
@@ -50,6 +51,21 @@ public class StampManager {
 			Log.d(TAG, "Failed to write file " + filename + "with an exception" + e);
 		}
 		stampBmp.recycle();
+	}
+
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Bitmap next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void remove() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

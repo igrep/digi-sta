@@ -1,5 +1,6 @@
 package info.android.akihabara.cos.sample02.test;
 
+import android.graphics.Bitmap;
 import info.android.akihabara.cos.sample02.StampManager;
 import junit.framework.TestCase;
 
@@ -42,12 +43,32 @@ public class StampManagerTestCase extends TestCase {
 		assertFalse("一旦スタンプをクリアした後", result);
 	}
 
-	public void testAddStamp() {
-		fail("Not yet implemented");
-	}
-
-	public void testReadStamps() {
-		fail("Not yet implemented");
+	public void testIteration() {
+		assertFalse("まだスタンプを追加していないとき", stampManager.hasNext());
+		assertNull("まだスタンプを追加していないとき", stampManager.next());
+		
+		Bitmap bmpExpected = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+		Bitmap bmpActual = null;
+		
+		stampManager.addStamp(bmpExpected);
+		assertTrue("スタンプを1つ追加したとき", stampManager.hasNext());
+		bmpActual = stampManager.next();
+		assertEquals("スタンプを1つ追加したとき", bmpExpected, bmpActual);
+		assertFalse("スタンプを1つ追加して1つ読んだ後", stampManager.hasNext());
+		assertNull("スタンプを1つ追加して1つ読んだ後", stampManager.next());
+		
+		stampManager.addStamp(bmpExpected);
+		stampManager.addStamp(bmpExpected);
+		
+		assertTrue("スタンプを2つ追加したとき", stampManager.hasNext());
+		bmpActual = stampManager.next();
+		assertEquals("スタンプを2つ追加したとき", bmpExpected, bmpActual);
+		assertTrue("スタンプを2つ追加して1つ読んだ後", stampManager.hasNext());
+		
+		bmpActual = stampManager.next();
+		assertEquals("スタンプを2つ追加して1つ読んだとき", bmpExpected, bmpActual);
+		assertFalse("スタンプを2つ追加して2つ読んだ後", stampManager.hasNext());
+		assertNull("スタンプを2つ追加して2つ読んだ後", stampManager.next());
 	}
 
 }
