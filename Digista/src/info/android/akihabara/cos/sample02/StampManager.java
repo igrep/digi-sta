@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.util.Log;
 
-public class StampManager implements Iterator<Bitmap>	{
+public class StampManager implements Iterable<Bitmap>	{
 	private static final String TAG = "test";
 	public final static File SIGN_DIR = new File(
 			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
@@ -53,18 +54,36 @@ public class StampManager implements Iterator<Bitmap>	{
 		stampBmp.recycle();
 	}
 
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
+	public StampsIterator iterator() {
+		return new StampsIterator();
 	}
+	
+	public static class StampsIterator implements Iterator<Bitmap> {
+		private int index;
+		private String[] signs;
+		
+		public StampsIterator(){
+			index = 0;
+			signs = SIGN_DIR.list();
+		}
 
-	public Bitmap next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		public boolean hasNext() {
+			return index < signs.length;
+		}
 
-	public void remove() {
-		// TODO Auto-generated method stub
+		public Bitmap next() {
+			Bitmap result = null;
+			if ( hasNext() ){
+				result = BitmapFactory.decodeFile( signs[index] );
+				++index;
+			}
+			return result;
+		}
+
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	

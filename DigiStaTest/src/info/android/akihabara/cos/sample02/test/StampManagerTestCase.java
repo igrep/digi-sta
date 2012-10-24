@@ -44,31 +44,33 @@ public class StampManagerTestCase extends TestCase {
 	}
 
 	public void testIteration() {
-		assertFalse("まだスタンプを追加していないとき", stampManager.hasNext());
-		assertNull("まだスタンプを追加していないとき", stampManager.next());
+		
+		StampManager.StampsIterator iterator = stampManager.iterator();
+		assertFalse("まだスタンプを追加していないとき", iterator.hasNext());
+		assertNull("まだスタンプを追加していないとき", iterator.next());
 		
 		Bitmap bmpExpected = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
 		Bitmap bmpActual = null;
 		
 		stampManager.addStamp(bmpExpected);
-		assertTrue("スタンプを1つ追加したとき", stampManager.hasNext());
-		bmpActual = stampManager.next();
+		assertTrue("スタンプを1つ追加したとき", iterator.hasNext());
+		bmpActual = iterator.next();
 		assertEquals("スタンプを1つ追加したとき", bmpExpected, bmpActual);
-		assertFalse("スタンプを1つ追加して1つ読んだ後", stampManager.hasNext());
-		assertNull("スタンプを1つ追加して1つ読んだ後", stampManager.next());
+		assertFalse("スタンプを1つ追加して1つ読んだ後", iterator.hasNext());
+		assertNull("スタンプを1つ追加して1つ読んだ後", iterator.next());
 		
 		stampManager.addStamp(bmpExpected);
 		stampManager.addStamp(bmpExpected);
 		
-		assertTrue("スタンプを2つ追加したとき", stampManager.hasNext());
-		bmpActual = stampManager.next();
+		assertTrue("スタンプを2つ追加したとき", iterator.hasNext());
+		bmpActual = iterator.next();
 		assertEquals("スタンプを2つ追加したとき", bmpExpected, bmpActual);
-		assertTrue("スタンプを2つ追加して1つ読んだ後", stampManager.hasNext());
+		assertTrue("スタンプを2つ追加して1つ読んだ後", iterator.hasNext());
 		
-		bmpActual = stampManager.next();
+		bmpActual = iterator.next();
 		assertEquals("スタンプを2つ追加して1つ読んだとき", bmpExpected, bmpActual);
-		assertFalse("スタンプを2つ追加して2つ読んだ後", stampManager.hasNext());
-		assertNull("スタンプを2つ追加して2つ読んだ後", stampManager.next());
+		assertFalse("スタンプを2つ追加して2つ読んだ後", iterator.hasNext());
+		assertNull("スタンプを2つ追加して2つ読んだ後", iterator.next());
 	}
 
 }
