@@ -53,6 +53,8 @@ public class StampManagerTestCase extends TestCase {
 		Bitmap bmpActual = null;
 		
 		stampManager.addStamp(bmpExpected);
+		iterator = stampManager.iterator();
+	
 		assertTrue("スタンプを1つ追加したとき", iterator.hasNext());
 		bmpActual = iterator.next();
 		assertEquals("スタンプを1つ追加したとき", bmpExpected, bmpActual);
@@ -61,6 +63,7 @@ public class StampManagerTestCase extends TestCase {
 		
 		stampManager.addStamp(bmpExpected);
 		stampManager.addStamp(bmpExpected);
+		iterator = stampManager.iterator();
 		
 		assertTrue("スタンプを2つ追加したとき", iterator.hasNext());
 		bmpActual = iterator.next();
