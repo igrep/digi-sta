@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class StampManager implements Iterable<Bitmap>	{
 	private static final String TAG = "test";
-	public final static File SIGN_DIR = new File(
+	private final static File SIGN_DIR = new File(
 			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
 			File.separator + "digista" );
 	
