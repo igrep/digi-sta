@@ -1,19 +1,28 @@
 package info.android.akihabara.cos.sample02.test;
 
+import java.io.File;
+import java.lang.reflect.Field;
+
 import android.graphics.Bitmap;
 import info.android.akihabara.cos.sample02.StampManager;
 import junit.framework.TestCase;
 
 public class StampManagerTestCase extends TestCase {
-	private static StampManager stampManager = null;
+	private StampManager stampManager;
+	private File signDir;
 
 	public StampManagerTestCase(String name) {
 		super(name);
 	}
 
 	protected void setUp() throws Exception {
+		Field signDirField;
 		super.setUp();
 		stampManager = new StampManager();
+		TestUtility.ObjectExposer<StampManager> objectExposer =
+				new TestUtility.ObjectExposer<StampManager>(StampManager.class);
+		signDirField = objectExposer.exposeField("SIGN_DIR");
+		signDir = (File) signDirField.get(stampManager);
 	}
 
 	protected void tearDown() throws Exception {
@@ -21,15 +30,17 @@ public class StampManagerTestCase extends TestCase {
 		stampManager.clearAllStamps();
 	}
 
-	public void testInitialize() {
+	public void testInitialize() throws IllegalArgumentException, IllegalAccessException {
 		boolean result;
 		
 		stampManager.clearAllStamps();
 		result = stampManager.initialize();
-		assertTrue("一旦すべてのスタンプを消した後", result);
+		assertTrue("すべてのスタンプを消した後、initializeは成功する。", result);
+		assertTrue("SIGN_DIRは存在する。", signDir.exists());
+		assertEquals("SIGN_DIRは空。", 0, signDir.list().length);
 		
 		result = stampManager.initialize();
-		assertFalse("一旦スタンプを初期化した後", result);
+		assertFalse("スタンプを一度初期化した後、initialzeは失敗する。", result);
 	}
 	
 	public void testClearAllStamps() {
@@ -37,10 +48,12 @@ public class StampManagerTestCase extends TestCase {
 		
 		stampManager.initialize();
 		result = stampManager.clearAllStamps();
-		assertTrue("一旦スタンプを初期化した後", result);
+		assertTrue("スタンプを初期化した後、clearAllStampsは成功する。", result);
+		assertFalse("SIGN_DIRは存在しない。", signDir.exists());
 	
 		result = stampManager.clearAllStamps();
-		assertFalse("一旦スタンプをクリアした後", result);
+		assertFalse("一旦スタンプをクリアした後、clearAllStampsは失敗する。", result);
+		assertFalse("SIGN_DIRは存在しない。", signDir.exists());
 	}
 
 	public void testIteration() {

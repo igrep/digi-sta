@@ -5,18 +5,16 @@ import java.lang.reflect.Method;
 
 public class TestUtility {
 	public static class ObjectExposer <T>{
-		private T object;
 		private Class<? extends Object> klass;
-		public ObjectExposer(T target) {
-			object = target;
-			klass = object.getClass();
+		public ObjectExposer(Class<T> targetClass) {
+			klass = targetClass;
 		}
-		public Method exposeMethod(Object object, String name) throws SecurityException, NoSuchMethodException{
+		public Method exposeMethod(String name) throws SecurityException, NoSuchMethodException{
 			Method method = klass.getDeclaredMethod(name);
 			method.setAccessible(true);
 			return method;
 		}
-		public Field exposeField(Object object, String name) throws SecurityException, NoSuchFieldException{
+		public Field exposeField(String name) throws SecurityException, NoSuchFieldException{
 			Field field = klass.getDeclaredField(name);
 			field.setAccessible(true);
 			return field;
