@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import info.android.akihabara.cos.sample02.StampManager;
 import junit.framework.TestCase;
 
@@ -53,6 +54,28 @@ public class StampManagerTestCase extends TestCase {
 		result = stampManager.clearAllStamps();
 		assertFalse("一旦スタンプをクリアした後、clearAllStampsは失敗する。", result);
 		assertFalse("SIGN_DIRは存在しない。", signDir.exists());
+	}
+	
+	public void testAddStamp() {
+		Bitmap bmpExpected1 = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+		Bitmap bmpExpected2 = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+		Bitmap bmpActual1;
+		Bitmap bmpActual2;
+		String[] bmpPaths;
+		
+		stampManager.addStamp(bmpExpected1);
+		bmpPaths = signDir.list();
+		bmpActual1 = BitmapFactory.decodeFile(bmpPaths[0]);
+		assertEquals("スタンプを1つ追加した後", bmpExpected1, bmpActual1);
+		assertEquals("スタンプを1つ追加した後", 1, bmpPaths.length);
+		
+		stampManager.addStamp(bmpExpected2);
+		bmpPaths = signDir.list();
+		bmpActual1 = BitmapFactory.decodeFile(bmpPaths[0]);
+		bmpActual2 = BitmapFactory.decodeFile(bmpPaths[1]);
+		assertEquals("スタンプを2つ追加した後", bmpExpected1, bmpActual1);
+		assertEquals("スタンプを2つ追加した後", bmpExpected2, bmpActual2);
+		assertEquals("スタンプを1つ追加した後", 2, bmpPaths.length);
 	}
 
 	public void testIteration() {
