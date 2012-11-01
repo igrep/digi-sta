@@ -10,18 +10,17 @@ import junit.framework.TestCase;
 public class StampManagerTestCase extends TestCase {
 	private StampManager stampManager;
 	private File signDir;
+	private static TestUtility.ObjectExposer<StampManager> objectExposer =
+				new TestUtility.ObjectExposer<StampManager>(StampManager.class);
 
 	public StampManagerTestCase(String name) {
 		super(name);
 	}
 
 	protected void setUp() throws Exception {
-		Field signDirField;
 		super.setUp();
 		stampManager = new StampManager();
-		TestUtility.ObjectExposer<StampManager> objectExposer =
-				new TestUtility.ObjectExposer<StampManager>(StampManager.class);
-		signDirField = objectExposer.exposeField("SIGN_DIR");
+		Field signDirField = objectExposer.exposeField("SIGN_DIR");
 		signDir = (File) signDirField.get(stampManager);
 	}
 
