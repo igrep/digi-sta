@@ -50,7 +50,7 @@ public class StampManager implements Iterable<Bitmap>	{
 		String filename =  System.currentTimeMillis() + ".png";
 
 		File file = new File( SIGN_DIR, filename );
-		Log.d(TAG, "Creating" + filename);
+		Log.d(TAG, "Creating " + filename);
 		try {
 			FileOutputStream out = new FileOutputStream(file);
 			stampBmp.compress(CompressFormat.PNG, 100, out);
@@ -81,7 +81,8 @@ public class StampManager implements Iterable<Bitmap>	{
 		public Bitmap next() {
 			Bitmap result = null;
 			if ( hasNext() ){
-				result = BitmapFactory.decodeFile( signs[index] );
+				result = BitmapFactory.decodeFile(
+						SIGN_DIR.getAbsolutePath() + File.separator + signs[index] );
 				++index;
 			}
 			return result;

@@ -65,16 +65,19 @@ public class StampManagerTestCase extends TestCase {
 		
 		stampManager.addStamp(bmpExpected1);
 		bmpPaths = signDir.list();
-		bmpActual1 = BitmapFactory.decodeFile(bmpPaths[0]);
-		assertEquals("スタンプを1つ追加した後", bmpExpected1, bmpActual1);
+		bmpActual1 = BitmapFactory.decodeFile( getPathInDir( signDir, bmpPaths[0]) );
+		assertEquals("スタンプを1つ追加した後", bmpExpected1.getHeight(), bmpActual1.getHeight());
+		assertEquals("スタンプを1つ追加した後", bmpExpected1.getWidth(), bmpActual1.getWidth());
 		assertEquals("スタンプを1つ追加した後", 1, bmpPaths.length);
 		
 		stampManager.addStamp(bmpExpected2);
 		bmpPaths = signDir.list();
 		bmpActual1 = BitmapFactory.decodeFile(bmpPaths[0]);
 		bmpActual2 = BitmapFactory.decodeFile(bmpPaths[1]);
-		assertEquals("スタンプを2つ追加した後", bmpExpected1, bmpActual1);
-		assertEquals("スタンプを2つ追加した後", bmpExpected2, bmpActual2);
+		assertEquals("スタンプを2つ追加した後", bmpExpected1.getHeight(), bmpActual1.getHeight());
+		assertEquals("スタンプを2つ追加した後", bmpExpected1.getWidth(), bmpActual1.getWidth());
+		assertEquals("スタンプを2つ追加した後", bmpExpected2.getHeight(), bmpActual2.getHeight());
+		assertEquals("スタンプを2つ追加した後", bmpExpected2.getWidth(), bmpActual2.getWidth());
 		assertEquals("スタンプを1つ追加した後", 2, bmpPaths.length);
 	}
 
@@ -85,14 +88,15 @@ public class StampManagerTestCase extends TestCase {
 		assertNull("まだスタンプを追加していないとき", iterator.next());
 		
 		Bitmap bmpExpected = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-		Bitmap bmpActual = null;
+		Bitmap bmpActual;
 		
 		stampManager.addStamp(bmpExpected);
 		iterator = stampManager.iterator();
 	
 		assertTrue("スタンプを1つ追加したとき", iterator.hasNext());
 		bmpActual = iterator.next();
-		assertEquals("スタンプを1つ追加したとき", bmpExpected, bmpActual);
+		assertEquals("スタンプを1つ追加したとき", bmpExpected.getHeight(), bmpActual.getHeight());
+		assertEquals("スタンプを1つ追加したとき", bmpExpected.getWidth(), bmpActual.getWidth());
 		assertFalse("スタンプを1つ追加して1つ読んだ後", iterator.hasNext());
 		assertNull("スタンプを1つ追加して1つ読んだ後", iterator.next());
 		
@@ -102,13 +106,20 @@ public class StampManagerTestCase extends TestCase {
 		
 		assertTrue("スタンプを2つ追加したとき", iterator.hasNext());
 		bmpActual = iterator.next();
-		assertEquals("スタンプを2つ追加したとき", bmpExpected, bmpActual);
+		assertEquals("スタンプを2つ追加したとき", bmpExpected.getHeight(), bmpActual.getHeight());
+		assertEquals("スタンプを2つ追加したとき", bmpExpected.getWidth(), bmpActual.getWidth());
 		assertTrue("スタンプを2つ追加して1つ読んだ後", iterator.hasNext());
 		
 		bmpActual = iterator.next();
-		assertEquals("スタンプを2つ追加して1つ読んだとき", bmpExpected, bmpActual);
+		assertEquals("スタンプを2つ追加して1つ読んだとき", bmpExpected.getHeight(), bmpActual.getHeight());
+		assertEquals("スタンプを2つ追加して1つ読んだとき", bmpExpected.getWidth(), bmpActual.getWidth());
 		assertFalse("スタンプを2つ追加して2つ読んだ後", iterator.hasNext());
 		assertNull("スタンプを2つ追加して2つ読んだ後", iterator.next());
+	}
+	
+	// Helper Methods
+	private String getPathInDir (File directory, String relativePath){
+		return directory.getAbsolutePath() + File.separator + relativePath;
 	}
 
 }
