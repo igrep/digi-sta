@@ -18,7 +18,12 @@ public class StampManager implements Iterable<Bitmap>	{
 			File.separator + "digista" );
 	
 	public StampManager () {
-		this.initialize();
+		boolean result = this.initialize();
+		if( result ){
+			Log.d(TAG, "Successfully created " + SIGN_DIR);
+		} else {
+			Log.d(TAG, SIGN_DIR + " was not created.");
+		}
 	}
 	
 	public boolean clearAllStamps () {
@@ -33,8 +38,10 @@ public class StampManager implements Iterable<Bitmap>	{
 	
 	public boolean initialize () {
 		if ( ! SIGN_DIR.exists() ){
+			Log.d(TAG, SIGN_DIR + " does not exist. Trying to create.");
 			return SIGN_DIR.mkdir();
 		} else {
+			Log.d(TAG, SIGN_DIR + " already exist. No need to create.");
 			return false;
 		}
 	}
